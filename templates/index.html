@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crop Yield</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <h1 class="text-center text-success mt-3">Crop Yield Prediction Per Country</h1>
+
+    <div class="container mt-4 my-4 p-4" style="background:#111;color:#fff;border-radius:16px;">
+      <h3 class="text-center text-success mb-3">Crop Features Here</h3>
+
+      <form action="/predict" method="post">
+        <div class="mb-3">
+          <label class="form-label" for="Year">Year</label>
+          <input type="number" class="form-control" name="Year" id="Year" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="rain">average_rain_fall_mm_per_year</label>
+          <input type="number" class="form-control" name="average_rain_fall_mm_per_year" id="rain" step="any" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="pest">pesticides_tonnes</label>
+          <input type="number" class="form-control" name="pesticides_tonnes" id="pest" step="any" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="avg_temp">avg_temp</label>
+          <input type="number" class="form-control" name="avg_temp" id="avg_temp" step="any" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Item">Item</label>
+          <input type="text" class="form-control" name="Item" id="Item" placeholder="Maize / Rice / Wheat" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="Area">Area</label>
+          <input type="text" class="form-control" name="Area" id="Area" placeholder="Albania / India / ..." required>
+        </div>
+
+        <button type="submit" class="btn btn-danger btn-lg mt-2">Predict</button>
+      </form>
+
+      {% if pred is defined %}
+        <hr />
+        <h2 class="text-center text-warning mt-3">Predicted yield (hg/ha): {{ pred }}</h2>
+      {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
